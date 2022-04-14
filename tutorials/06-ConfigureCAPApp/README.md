@@ -31,7 +31,7 @@ Clone an existing CAP application in SAP Business Application Studio and deploy 
 8. Choose your user as destination for the fork. 
    ![Choose user for fork](./images/fork-repo-user.png)
 
-   You should now have the following repository: github.com/**YourUser**/btp-build-resilient-apps.git.
+   You should now have the following repository: github.com/**YourUser**/btp-build-resilient-apps.
    > To Update the dependencies automatically using GitHub Actions [GitHub Actions to Update Dependencies](#gitHub-actions-to-update-dependencies)
 
 9.	Choose *Terminal -> New Terminal* in the menu on the top of your screen.
@@ -46,7 +46,7 @@ Clone an existing CAP application in SAP Business Application Studio and deploy 
 11. Clone your forked sample GitHub repository for this mission. 
 
     ```
-    git clone -b extension https://github.com/YourUser/btp-build-resilient-apps
+    git clone -b extension-privatelink https://github.com/YourUser/btp-build-resilient-apps
     ```
     
     > **IMPORTANT:** Replace **YourUser** with your actual username. 
@@ -125,9 +125,6 @@ Clone an existing CAP application in SAP Business Application Studio and deploy 
 6. These test cases can now be executed from the terminal using <code>npm run test:odata_negative</code> or <code>npm run test:odata</code> 
 
 ![github actions](./images/test-6.png)
-
->Note: Adding the Test Cases to SAP Continuous Integration & Delivery pipeline will be shown in the [Setup CI/CD Pipeline](../10-SetupCICD/README.md)
-
 
 ## APPENDIX
 

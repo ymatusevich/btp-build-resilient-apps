@@ -1,4 +1,7 @@
 /* eslint-disable no-unused-vars */
+const { BusinessPartnerAddress: sdkBupaAddress, BusinessPartner: sdkBupa } = require('@sap/cloud-sdk-vdm-business-partner-service')
+
+//import { BusinessPartnerAddresses } from "@sap/cloud-sdk-vdm-business-partner-service";
 
 const cds = require('@sap/cds')
 const _ = require('lodash')
@@ -12,11 +15,9 @@ module.exports = cds.service.impl(async function () {
 
     const { BusinessPartnerVerification, Addresses: AddressVerification } = this.entities
     const bupaSrv = await cds.connect.to('OP_API_BUSINESS_PARTNER_SRV')
-
     const messaging = await cds.connect.to("messaging")
     const S4Srv = await cds.connect.to('tfe.service.businessPartnerValidation.S4Service')
     const { BusinessPartners: ExtBupa, BusinessPartnerAddresses: ExtBupaAddresses } = S4Srv.entities
-
     const addressColumns = ['addressId', 'streetName', 'country', 'cityName', 'postalCode', 'houseNumber']
 
 
@@ -49,14 +50,9 @@ module.exports = cds.service.impl(async function () {
 
         let bupaVerification = await getBusinessPartnerIDByUUID(data.verifications_ID, req)
         try {
-          
-            let payload = {
-                streetName: data.streetName,
-                postalCode: data.postalCode,
-                cityName: data.cityName,
-                houseNumber: data.houseNumber
-            }
-            await bupaSrv.run(UPDATE(ExtBupaAddresses).set(payload).where({ businessPartnerId: bupaVerification.businessPartnerId, addressId: data.addressId }))        
+            let bupaAddress2Update = sdkBupaAddress.builder().businessPartner(bupaVerification.businessPartnerId).addressId(data.addressId).cityName(data.cityName).postalCode(data.postalCode).streetName(data.streetName).houseNumber(data.houseNumber).build();
+            let updatedBupaAddress = await sdkBupaAddress.requestBuilder().update(bupaAddress2Update).execute(businessPartnerDestination);
+            console.info(updatedBupaAddress)
         }
         catch (error) {
 
@@ -92,8 +88,8 @@ module.exports = cds.service.impl(async function () {
         let businessPartner = await getBusinessPartnerIDByUUID(req.params[0].ID, req)
         try {
             if (!_.isUndefined(businessPartner)) {
-                await bupaSrv.run(UPDATE(ExtBupa, businessPartner.businessPartnerId).with({ "businessPartnerIsBlocked": true }))
-
+                let bupa2Update = sdkBupa.builder().businessPartner(businessPartner.businessPartnerId).businessPartnerIsBlocked(true).build()
+                let result2 = await sdkBupa.requestBuilder().update(bupa2Update).execute(businessPartnerDestination);
             }
         } catch (error) {
             if (_.isUndefined(error.rootCause)) {
@@ -123,8 +119,9 @@ module.exports = cds.service.impl(async function () {
         let businessPartner = await getBusinessPartnerIDByUUID(req.params[0].ID, req)
         try {
             if (!_.isUndefined(businessPartner)) {
-                await bupaSrv.run(UPDATE(ExtBupa, businessPartner.businessPartnerId).with({ "businessPartnerIsBlocked": false }))
-
+                let bupa2Update = sdkBupa.builder().businessPartner(businessPartner.businessPartnerId).businessPartnerIsBlocked(false).build()
+                let result2 = await sdkBupa.requestBuilder().update(bupa2Update).execute(businessPartnerDestination);
+                console.log(result2);
             }
         } catch (error) {
             if (_.isUndefined(error.rootCause)) {
