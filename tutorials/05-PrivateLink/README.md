@@ -218,7 +218,7 @@ resources:
 Build the Multi-Target Application Archive (MTA Archive) by executing the following command in the root directory of your project in the terminal:
 
   ```
-  mbt build -e trial.mtaext
+  mbt build
   ```
 
 This will produce a .mtar file in the mta_archives directory. Some of the values for the service instance creation depend on the environment you are deploying to, that's why the *-e* for *extension* is used here. 
