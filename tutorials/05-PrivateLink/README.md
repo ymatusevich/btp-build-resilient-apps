@@ -9,7 +9,7 @@ Having SAP Private Link will not require any more to expose the systems and comm
 
 The current use case is describing an SAP S/4HANA extension, of course having a S/4HANA solution deployed on Azure.
 
-![S/4HANA Extension using Private Link](images/s4-ext-privatelink.png)
+![S/4HANA Extension using Private Link](images/s4-ext-privatelink-2.png)
 
 ## Architecture Description
 With SAP Private Link service, Cloud Foundry applications running on SAP BTP with Microsoft Azure as an IaaS provider can communicate with Azure Private Link services via a private connection. 
