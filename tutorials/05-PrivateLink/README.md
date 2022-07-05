@@ -1,4 +1,4 @@
-# Safeguard key business processes with resilient applications on SAP BTP - SAP Private Link (BETA) Service
+# Safeguard key business processes with resilient applications on SAP BTP - SAP Private Link Service
 
 In this section, you can find all the required steps for your Extension Application to use SAP Private Link Service to consume OData resources from the S/4HANA system located on **Azure** subscription. 
 More details about [SAP Private Link Service ](https://blogs.sap.com/2021/06/28/sap-private-link-service-beta-is-available/).
@@ -21,7 +21,7 @@ This connection can be established by creating an Azure Private Link service tha
 
 ## Set Up SAP Private Link Service on SAP BTP
 
-The Enhanced BETA version of the Private link service is available on SAP BTP accounts running on Azure and should be enabled under your SAP BTP subaccount.
+The Enhanced version of the Private link service is available on SAP BTP accounts running on Azure and should be enabled under your SAP BTP subaccount.
 
 To be able to use the functionalities of the SAP Private Link service, you first need to set the entitlements in your subaccount.
 On <code>SAP BTP Cockpit -> Entitlements</code>, the <code>Private Link Service</code> should be configured.
