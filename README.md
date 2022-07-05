@@ -1,4 +1,4 @@
-# Safeguard key business processes with resilient applications on SAP BTP - SAP Private Link (BETA) service
+# Safeguard key business processes with resilient applications on SAP BTP - SAP Private Link service
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-build-resilient-apps)](https://api.reuse.software/info/github.com/SAP-samples/btp-build-resilient-apps)
 
@@ -7,13 +7,11 @@
 
 In this use case we are going to use the SAP Private Link service to communicate with an SAP S/4HANA system (or other SAP or non-SAP system running on a VM in your own Azure account) privately from within the SAP BTP, Cloud Foundry Runtime without SAP Cloud Connector.
 
-Using the SAP Private Link (BETA) service will not require the SAP Cloud Connector anymore to expose the systems and communication through the internet, the entire traffic is secured by internal hyperscaler network without any exposure.
+Using the SAP Private Link service will not require the SAP Cloud Connector anymore to expose the systems and communication through the internet, the entire traffic is secured by internal hyperscaler network without any exposure.
 
 The current use case is describing an SAP S/4HANA extension application, of course having an SAP S/4HANA solution deployed on Azure infrastructure.
   
  >Note: Currently, we only support the connection from SAP BTP Cloud Foundry to Azure Private Link services. 
-
- >Note, For the beta release, you can connect to Microsoft Azure Private Link Service running behind the Azure Standard Load Balancer.
 
 The business scenario in a nutshell:
 
@@ -31,7 +29,7 @@ This means:
 
 ![solution diagram](./tutorials/05-PrivateLink/images/s4-ext-privatelink-2.png)
 
-The Business Partner Validation application is developed using the SAP Cloud Application programming Model (CAP) and runs on the SAP BTP, Cloud Foundry runtime. It leverages platform services like SAP Event Mesh, SAP HANA Cloud and the SAP Private Link (BETA) service. Whenever a change in the SAP S/4HANA on-premise system occurs, an event on SAP Event Mesh is triggered. The CAP application on SAP BTP will asynchronously consume the event and process the payload. This means, some additional data is read using OData APIs from the SAP S/4HANA on-premise backend and stored in SAP HANA Cloud on SAP BTP to be independent from the actual SAP S/4HANA system.
+The Business Partner Validation application is developed using the SAP Cloud Application programming Model (CAP) and runs on the SAP BTP, Cloud Foundry runtime. It leverages platform services like SAP Event Mesh, SAP HANA Cloud and the SAP Private Link service. Whenever a change in the SAP S/4HANA on-premise system occurs, an event on SAP Event Mesh is triggered. The CAP application on SAP BTP will asynchronously consume the event and process the payload. This means, some additional data is read using OData APIs from the SAP S/4HANA on-premise backend and stored in SAP HANA Cloud on SAP BTP to be independent from the actual SAP S/4HANA system.
 
 ## Requirements
 The required systems and components are:
@@ -53,7 +51,7 @@ Entitlements/Quota required in your SAP Business Technology Platform Account:
 | SAP HANA Cloud                     |             |                     |
 | Cloud Foundry runtime              |             |                     |
 | Application Autoscaler             | standard    | 1                   |
-| SAP Private Link (BETA)            | standard    | 1                   |
+| SAP Private Link                   | standard    | 1                   |
 
 
 Subscriptions required in your SAP Business Technology Platform Account:
@@ -73,7 +71,7 @@ Subscriptions required in your SAP Business Technology Platform Account:
 - Step 2: [S/4HANA Enable OData Service for business partner](./tutorials/02-configure-oData-Service)
 - Step 3: [Setup SAP BTP Enterprise Environment](./tutorials/03-PrepareBTP)
 - Step 4: [Create SAP HANA Cloud instance](./tutorials/04-SetupHANACloud)
-- Step 5: [Setup connectivity between S/4HANA system, SAP BTP - SAP Private Link (BETA)](./tutorials/05-PrivateLink)
+- Step 5: [Setup connectivity between S/4HANA system, SAP BTP - SAP Private Link](./tutorials/05-PrivateLink)
 - Step 6: [Configure Business Application Studio and Build/Deploy the CAP application ](./tutorials/06-ConfigureCAPApp)
 - Step 7: [Configure Event Based Communication between S/4HANA and Event Mesh](./tutorials/07-SetupEventMesh)
 - Step 8: [Test scenario End to End](./tutorials/08-TestApplication)
