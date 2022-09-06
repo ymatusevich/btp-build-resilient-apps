@@ -21,6 +21,7 @@ modules:
       - name: BusinessPartnerVerification-dest
       - name: BusinessPartnerVerification-uaa
       - name: BusinessPartnerVerification-logging
+      - name: BusinessPartnerVerification-privatelink
     provides:
       - name: srv-api
         properties:
@@ -163,3 +164,10 @@ resources:
     parameters:
       service: application-logs
       service-plan: lite
+    # Private Link Service
+  - name: BusinessPartnerVerification-privatelink
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: privatelink
+      service-name: tfe-cal-s4-privatelink
+      service-plan: standard
