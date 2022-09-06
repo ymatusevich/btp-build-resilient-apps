@@ -193,7 +193,7 @@ WebIDEUsage | odata_abap |
 
 ### Bind application to Private Link service
 
-Upon the creation of a binding between a CF application and a private link service instance, the Private Link service (Beta) creates a space-scoped Cloud Foundry application security group that enables network access to the IP address associated with the Private Endpoint. 
+Upon the creation of a binding between a CF application and a private link service instance, the Private Link service creates a space-scoped Cloud Foundry application security group that enables network access to the IP address associated with the Private Endpoint. 
 
 Open the MTA deployment descriptor and add the following PrivateLink resource to your MTA and assign it to *BusinessPartnerVerification-srv*
 
