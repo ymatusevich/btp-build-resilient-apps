@@ -1,13 +1,13 @@
 # Safeguard key business processes with resilient applications on SAP BTP - SAP Private Link Service
 
-In this section, you can find all the required steps for your Extension Application to use SAP Private Link Service to consume OData resources from the S/4HANA system located on **Azure** subscription. 
+In this section, you can find all the required steps for your Extension Application to use SAP Private Link Service to consume OData resources from the SAP S/4HANA system located on **Azure** subscription. 
 More details about [SAP Private Link Service ](https://blogs.sap.com/2022/06/22/sap-private-link-service-on-azure-is-now-generally-available-ga/).
 
-In our use case, we are going to use the SAP Private Link service to communicate with an SAP S/4HANA system (or other SAP or non-SAP system running on a VM in your Azure account) privately from within SAP BTP Cloud Foundry without SAP Cloud Connector.
+In our use case, we are going to use the SAP Private Link service to communicate with an SAP S/4HANA system (or other SAP or non-SAP system running on a VM in your Azure account) privately from within SAP BTP, Cloud Foundry Runtime without SAP Cloud Connector.
 
-Having SAP Private Link will not require any more to expose the systems and communication through the internet and the whole traffic is secured by an internal hyperscaler network without any exposure. 
+Having SAP Private Link service in place will not require any more to expose the systems and communication through the internet and the whole traffic is secured by an internal hyperscaler network without any exposure. 
 
-The current use case is describing an SAP S/4HANA extension, of course having a S/4HANA solution deployed on Azure.
+The current use case is describing an SAP S/4HANA extension, of course having an SAP S/4HANA solution deployed on Azure.
 
 ![S/4HANA Extension using Private Link](images/s4-ext-privatelink-2.png)
 
