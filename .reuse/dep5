@@ -1,5 +1,5 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Safeguard key business processes with resilient applications on SAP BTP
+Upstream-Name: Enhance core ERP business processes with resilient applications on SAP BTP
 Upstream-Contact: harutyun.ter-minasyan@sap.com
 Source: https://github.com/SAP-samples/btp-build-resilient-apps
 Disclaimer: The code in this project may include calls to APIs (“API Calls”) of
@@ -25,5 +25,5 @@ Disclaimer: The code in this project may include calls to APIs (“API Calls”)
  parties the right to use of access any SAP External Product, through API Calls.
 
 Files: *
-Copyright: 2021 SAP SE or an SAP affiliate company and Safeguard key business processes with resilient applications on SAP BTP contributors
+Copyright: 2021 SAP SE or an SAP affiliate company and Enhance core ERP business processes with resilient applications on SAP BTP contributors
 License: Apache-2.0

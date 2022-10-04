@@ -1,4 +1,4 @@
-# Safeguard key business processes with resilient applications on SAP BTP - SAP Private Link Service
+# Enhance core ERP business processes with resilient applications on SAP BTP - SAP Private Link Service
 
 In this section, you can find all the required steps for your Extension Application to use SAP Private Link Service to consume OData resources from the SAP S/4HANA system located on **Azure** subscription. 
 More details about [SAP Private Link Service ](https://blogs.sap.com/2022/06/22/sap-private-link-service-on-azure-is-now-generally-available-ga/).
