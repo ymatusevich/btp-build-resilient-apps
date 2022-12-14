@@ -27,7 +27,7 @@ This means:
 
 ### Solution Diagram
 
-![solution diagram](./tutorials/05-PrivateLink/images/s4-ext-privatelink-2.png)
+![solution diagram](./tutorials/05-PrivateLink/images/highlevel-arch.png)
 
 The Business Partner Validation application is developed using the SAP Cloud Application programming Model (CAP) and runs on the SAP BTP, Cloud Foundry runtime. It leverages platform services like SAP Event Mesh, SAP HANA Cloud and the SAP Private Link service. Whenever a change in the SAP S/4HANA on-premise system occurs, an event on SAP Event Mesh is triggered. The CAP application on SAP BTP will asynchronously consume the event and process the payload. This means, some additional data is read using OData APIs from the SAP S/4HANA on-premise backend and stored in SAP HANA Cloud on SAP BTP to be independent from the actual SAP S/4HANA system.
 
