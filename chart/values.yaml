@@ -1,0 +1,121 @@
+global:
+  domain: <replace with kyma domain> # e.g.: a9ff5e0.kyma.ondemand.co
+  imagePullSecret: none # if you have a private registry, provide your secret here. (https://blogs.sap.com/2022/12/04/sap-btp-kyma-kubernetes-how-to-pull-from-private-repository/)
+srv:
+  fullnameOverride: verification-srv
+  replicaCount: 3
+  bindings:
+    hana:
+      serviceInstanceFullname: verification-hdi-container
+    messaging:
+      serviceInstanceFullname: verification-em
+    destination:
+      serviceInstanceFullname: verification-dest
+    auth:
+      serviceInstanceFullname: verification-xsuaa
+  image:
+    repository: <your-registry-and-user>/verificationapp-srv
+    tag: latest
+  resources:
+    limits:
+      ephemeral-storage: 1G
+      memory: 500M
+    requests:
+      ephemeral-storage: 1G
+      cpu: 500m
+      memory: 500M
+  health_check:
+    liveness:
+      path: /
+    readiness:
+      path: /
+  additionalVolumes:
+    - name: connectivity-secret
+      volumeMount:
+        mountPath: /bindings/connectivity
+        readOnly: true
+      projected:
+        sources:
+          - secret:
+              name: verificationapp-connectivity-binding
+              optional: false
+          - secret:
+              name: verificationapp-connectivity-binding
+              optional: false
+              items:
+                - key: token_service_url
+                  path: url
+          - configMap:
+              name: verificationapp-connectivity-proxy-info
+              optional: false
+
+hdi_container:
+  fullnameOverride: verification-hdi-container
+  serviceOfferingName: hana
+  servicePlanName: hdi-shared
+
+html5_apps_repo_host:
+  fullnameOverride: verification-html5-repo-host
+  serviceOfferingName: html5-apps-repo
+  servicePlanName: app-host
+
+hana_deployer:
+  image:
+    repository: <your-registry-and-user>/verificationapp-hana-deployer
+    tag: latest
+  bindings:
+    hana:
+      serviceInstanceFullname: verification-hdi-container
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 1G
+    requests:
+      cpu: 1000m
+      memory: 1G
+event_mesh:
+  fullnameOverride: verification-em
+  serviceOfferingName: enterprise-messaging
+  servicePlanName: default
+  config: event-mesh.json
+destination:
+  fullnameOverride: verification-dest
+  serviceOfferingName: destination
+  servicePlanName: lite
+  parameters:
+    version: 1.0.0
+    HTML5Runtime_enabled: true
+html5_apps_deployer:
+  cloudService: tfe.bp
+  backendDestinations:
+    BPVerification-srv-api:
+      service: srv
+  image:
+    repository: <your-registry-and-user>/verification-html5-deployer #same as in package.json config.ImagePrefix
+    tag: latest
+  bindings:
+    xsuaa:
+      serviceInstanceFullname: verification-xsuaa
+    destination:
+      serviceInstanceFullname: verification-dest
+    html5_apps_repo:
+      serviceInstanceFullname: verification-html5-repo-host
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 1G
+    requests:
+      cpu: 1000m
+      memory: 1G
+xsuaa:
+  fullnameOverride: verification-xsuaa
+  serviceOfferingName: xsuaa
+  servicePlanName: application
+  parameters:
+    xsappname: verificationapp
+  config: xs-security.json
+connectivity:
+  serviceOfferingName: connectivity
+  servicePlanName: connectivity_proxy
+  secretName: verificationapp-connectivity-binding
+  configMapName: verificationapp-connectivity-proxy-info
